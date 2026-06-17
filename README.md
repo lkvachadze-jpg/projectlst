@@ -1,4 +1,5 @@
-final project
+sudo grep "5712" /var/ossec/logs/alerts/alerts.json | tail -n 1
+
 sudo iptables -D INPUT -s 127.0.0.1 -j DROP
 
 sudo apt update && sudo apt install -y openssh-server && sudo systemctl enable --now ssh
