@@ -1,1 +1,13 @@
-sd
+sudo grep "5712" /var/ossec/logs/alerts/alerts.json | tail -n 1
+
+sudo iptables -D INPUT -s 127.0.0.1 -j DROP
+
+sudo apt update && sudo apt install -y openssh-server && sudo systemctl enable --now ssh
+
+for i in {1..15}; do ssh -o ConnectTimeout=2 -o NumberOfPasswordPrompts=1 -o PubkeyAuthentication=no -o PasswordAuthentication=no fakeuser@127.0.0.1; done
+
+curl -sO https://packages.wazuh.com/4.14/wazuh-install.sh && sudo bash ./wazuh-install.sh -a
+
+sudo python3 soc_orchestrator.py
+
+nano soc_orchestrator.py
